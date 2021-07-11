@@ -9,7 +9,7 @@ app.listen(8000, () => {
 })
 
 let asyncCall = new Promise(async function (Resolve, Reject) {
-    console.log('Data call initiated:');
+    console.log('Data call initiated!');
     const client = new SparqlClient({ endpointUrl: 'http://localhost:3030/dataset' });
     const stream = await client.query.select('PREFIX owl: <http://www.w3.org/2002/07/owl#>\
     select distinct  ?subject ?predicate ?object {\
