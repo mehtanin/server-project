@@ -5,12 +5,12 @@ const app = express();
 let fetchedData = [];
 
 app.listen(8000, () => {
-    console.log('Server is running!');
+    console.log('Server is running...');
 })
 
-let asyncCall = new Promise(async function (Resolve, Reject) {
-    console.log('Data call initiated!');
-    const client = new SparqlClient({ endpointUrl: 'http://localhost:3030/dataset' });
+let asyncCallToLoadData = new Promise(async function (Resolve, Reject) {
+    //console.log('Data call initiated!');
+    const client = new SparqlClient({ endpointUrl: 'http://localhost:3030/dataset/' });
     const stream = await client.query.select('PREFIX owl: <http://www.w3.org/2002/07/owl#>\
     select distinct  ?subject ?predicate ?object {\
      ?subject a owl:Class; \
@@ -30,9 +30,16 @@ let asyncCall = new Promise(async function (Resolve, Reject) {
     //Reject(); 
 });
 
+app.get("/", async function (req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.send({
+        Info: "Server is running...",
+    })
+})
+
 app.get("/getdata", async function (req, res) {
     res.header('Access-Control-Allow-Origin', '*');
-    asyncCall.then(function () {
+    asyncCallToLoadData.then(function () {
         res.send({
             data: fetchedData,
         })
