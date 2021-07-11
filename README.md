@@ -3,7 +3,7 @@ A Node.js server to load and serve data from SPARQL.
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) installed.
+Make sure you have [Node.js](http://nodejs.org/) installed. Please run following commands step by step on terminal.
 
 ```sh
 git clone https://github.com/mehtanin/server-project.git
